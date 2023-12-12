@@ -3,6 +3,7 @@ from aiogram.types import Message
 from aiogram.filters import Command
 
 from google_sheets.insert_data import add_error
+from database.update_teachers import update_teachers
 
 router = Router()
 
@@ -10,6 +11,13 @@ router = Router()
 @router.message(Command('start'))
 async def start_handler(msg: Message):
     await msg.answer('Опять работа?')
+
+
+@router.message(Command('update_teachers'))
+async def start_handler(msg: Message):
+    await msg.answer('Запускаю обновление преподавателей')
+    update_teachers()
+    await msg.answer('Обновил преподавателей')
 
 
 @router.message(Command('help'))
@@ -44,17 +52,3 @@ async def start_handler(msg: Message):
 async def start_handler(msg: Message):
     add_error('невыход', msg.chat.id)
     await msg.answer('<b>Невыход</b> добавлен в таблицу.')
-
-# @router.message()
-# async def message_handler(msg: Message):
-#     print(dict(msg))
-#     await msg.answer(f'Инфо: {msg}')
-
-
-# @router.message(F.new_chat_members)
-# async def send_welcome(msg: types.Message):
-#     bot_id = '6897378472'
-
-#     for chat_member in msg.new_chat_members:
-#         if chat_member.id == bot_id:
-#             await msg.answer(f'Chat ID: {msg.chat.id}')

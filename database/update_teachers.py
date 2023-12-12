@@ -31,6 +31,3 @@ def update_teachers():
             db.execute_script('INSERT INTO teachers (name, mail, tg_username, crm_id, chat_id) VALUES (?, ?, ?, ?, ?)', (teacher_info[1], teacher_info[2], teacher_info[3], teacher_info[0], teacher_info[4]))
 
         i += 1
-
-
-update_teachers()

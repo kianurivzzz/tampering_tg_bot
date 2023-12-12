@@ -14,41 +14,41 @@ async def start_handler(msg: Message):
 
 
 @router.message(Command('update_teachers'))
-async def start_handler(msg: Message):
+async def update_db_handler(msg: Message):
     await msg.answer('Запускаю обновление преподавателей')
     update_teachers()
     await msg.answer('Обновил преподавателей')
 
 
 @router.message(Command('help'))
-async def start_handler(msg: Message):
+async def help_handler(msg: Message):
     await msg.answer('Список команд бота для менеджеров и тимлидеров:\n/chat_id – узнать айди чата\n/test_insert – тестовая запись в таблицу фиксации\n/delay – фиксация опоздания, проставлять если преподаватель вышел через 5-15 минут после начала урока\n/replacement – фиксация замены\n/skipping – фиксация невыхода на урок, проставлять после 15 минут ожидания')
 
 
 @router.message(Command('chat_id'))
-async def start_handler(msg: Message):
+async def chat_id_handler(msg: Message):
     await msg.answer(f'Chat ID: <code>{msg.chat.id}</code>')
 
 
 @router.message(Command('test_insert'))
-async def start_handler(msg: Message):
+async def test_handler(msg: Message):
     add_error('тест', msg.chat.id)
     await msg.answer('<b>Тест</b> зафиксирован и добавлен в таблицу.')
 
 
 @router.message(Command('delay'))
-async def start_handler(msg: Message):
+async def delay_handler(msg: Message):
     add_error('опоздание', msg.chat.id)
     await msg.answer('<b>Опоздание</b> добавлено в таблицу.')
 
 
 @router.message(Command('replacement'))
-async def start_handler(msg: Message):
+async def replacement_handler(msg: Message):
     add_error('замена', msg.chat.id)
     await msg.answer('<b>Замена</b> добавлена в таблицу.')
 
 
 @router.message(Command('skipping'))
-async def start_handler(msg: Message):
+async def skipping_handler(msg: Message):
     add_error('невыход', msg.chat.id)
     await msg.answer('<b>Невыход</b> добавлен в таблицу.')
